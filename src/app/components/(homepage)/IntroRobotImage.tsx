@@ -1,6 +1,6 @@
 import AiRobot from "@/app/assets/ai_image.jpg";
 import Image from "next/image";
-import ChatExample from "../(wrappers)/ChatExample";
+import ChatExample from "./ChatExample";
 const IntroRobotImage = () => {
   return (
     <section className="relative hidden sm:block">
