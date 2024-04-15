@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import CustomButton from "../(shared)/CustomButton";
+import Link from "next/link";
 
 const IntroText = () => {
   return (
@@ -12,13 +13,15 @@ const IntroText = () => {
         MyDiaryAI helps users organize their thoughts, track their emotions, and
         gain insights through AI-powered analysis
       </p>
-      <CustomButton
-        buttonVariant="default"
-        type="button"
-        onClickFn={() => console.log("Hello")}
-      >
-        Get started
-      </CustomButton>
+      <Link href={"/authentication?login"}>
+        <CustomButton
+          buttonVariant="default"
+          type="button"
+          onClickFn={() => console.log("Hello")}
+        >
+          Get started
+        </CustomButton>
+      </Link>
     </section>
   );
 };
