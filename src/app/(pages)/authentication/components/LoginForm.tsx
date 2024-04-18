@@ -11,9 +11,11 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { TabsContent } from "@/components/ui/tabs";
+import { useRouter } from "next/navigation";
 import React from "react";
 
 const LoginForm = () => {
+  const router = useRouter();
   return (
     <TabsContent value="login">
       <Card>
@@ -32,9 +34,7 @@ const LoginForm = () => {
           </div>
         </CardContent>
         <CardFooter>
-          <Button onClick={() => console.log("Login succesfull!")}>
-            Login
-          </Button>
+          <Button onClick={() => router.push("/diary")}>Login</Button>
         </CardFooter>
       </Card>
     </TabsContent>
