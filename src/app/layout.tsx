@@ -16,7 +16,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className + " bg-slate-100/80"}>{children}</body>
+      <body className={inter.className + " bg-slate-100/80 container"}>
+        {children}
+      </body>
     </html>
   );
 }
