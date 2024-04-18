@@ -17,14 +17,21 @@ const CustomButton = ({
   buttonVariant,
   type,
   onClickFn,
+  className,
 }: {
   children: React.ReactNode;
   buttonVariant: ButtonProps;
   type: ButtonType;
   onClickFn?: () => void;
+  className?: string;
 }) => {
   return (
-    <Button variant={buttonVariant} type={type} onClick={onClickFn}>
+    <Button
+      className={className}
+      variant={buttonVariant}
+      type={type}
+      onClick={onClickFn}
+    >
       {children}
     </Button>
   );
