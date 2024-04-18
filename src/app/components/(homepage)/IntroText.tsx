@@ -18,6 +18,7 @@ const IntroText = () => {
           buttonVariant="default"
           type="button"
           onClickFn={() => console.log("Hello")}
+          className={"mt-4"}
         >
           Get started
         </CustomButton>
