@@ -13,8 +13,14 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { TabsContent } from "@/components/ui/tabs";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 const LoginForm: React.FC<LoginFormValidation> = () => {
+  const [dataCredentials, setDataCredentials] = useState({
+    username: null,
+    password: null,
+  });
+
   const router = useRouter();
   return (
     <TabsContent value="login">
