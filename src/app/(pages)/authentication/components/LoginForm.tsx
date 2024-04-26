@@ -1,4 +1,5 @@
 "use client";
+import { LoginFormValidation } from "@/app/types/types";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -12,9 +13,8 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { TabsContent } from "@/components/ui/tabs";
 import { useRouter } from "next/navigation";
-import React from "react";
 
-const LoginForm = () => {
+const LoginForm: React.FC<LoginFormValidation> = () => {
   const router = useRouter();
   return (
     <TabsContent value="login">
@@ -26,11 +26,11 @@ const LoginForm = () => {
         <CardContent className="space-y-2">
           <div className="space-y-1">
             <Label htmlFor="name">Username</Label>
-            <Input id="name" defaultValue="Daydreamer" />
+            <Input id="name" placeholder="Daydreamer" />
           </div>
           <div className="space-y-1">
             <Label htmlFor="username">Password</Label>
-            <Input id="username" defaultValue="********" />
+            <Input id="username" placeholder="********" />
           </div>
         </CardContent>
         <CardFooter>
