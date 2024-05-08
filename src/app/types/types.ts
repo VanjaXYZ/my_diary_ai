@@ -1,4 +1,4 @@
-import { loginSchema } from "../schemas/validations";
+import { loginSchema, registrationSchema } from "../schemas/validations";
 import { z } from "zod";
 
 export type LoginFormValidation = {
@@ -14,3 +14,5 @@ export type RegistrationFormValidation = {
 };
 
 export const loginTypeZod = z.infer<typeof loginSchema>;
+
+export const registerTypeZod = z.infer<typeof registrationSchema>;
