@@ -1,6 +1,7 @@
 "use client";
 import { LoginFormValidation } from "@/app/types/types";
-import { Button } from "@/components/ui/button";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Card,
   CardContent,
@@ -9,41 +10,47 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { TabsContent } from "@/components/ui/tabs";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Form } from "@/components/ui/form";
+import LoginInputs from "./LoginInputs";
+import FormSubmitButton from "./FormSubmitButton";
+import { loginUser } from "@/app/routes/_auth/route";
+import FormWrapper from "./FormWrapper";
+import { useForm } from "react-hook-form";
+import { loginTypeZod } from "../../../types/types";
+import { loginSchema } from "@/app/schemas/validations";
 
 const LoginForm: React.FC<LoginFormValidation> = () => {
-  const [dataCredentials, setDataCredentials] = useState({
-    username: null,
-    password: null,
+  const form = useForm<loginTypeZod>({
+    resolver: zodResolver(loginSchema),
+    defaultValues: {
+      username: "",
+      password: "",
+    },
   });
-
-  const router = useRouter();
+  const onSubmit = (values: z.infer<typeof formSchema>) => {
+    // Do something with the form values.
+    // ✅ This will be type-safe and validated.
+    console.log(values);
+  };
   return (
-    <TabsContent value="login">
-      <Card>
-        <CardHeader>
-          <CardTitle>Login</CardTitle>
-          <CardDescription>Login to your account.</CardDescription>
-        </CardHeader>
-        <CardContent className="space-y-2">
-          <div className="space-y-1">
-            <Label htmlFor="name">Username</Label>
-            <Input id="name" placeholder="Daydreamer" />
-          </div>
-          <div className="space-y-1">
-            <Label htmlFor="username">Password</Label>
-            <Input id="username" placeholder="********" />
-          </div>
-        </CardContent>
-        <CardFooter>
-          <Button onClick={() => router.push("/diary")}>Login</Button>
-        </CardFooter>
-      </Card>
-    </TabsContent>
+    <FormWrapper
+      value={"login"}
+      title={"Login"}
+      description={"Login to your account."}
+    >
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)}>
+          <CardContent className="space-y-2">
+            <LoginInputs form={form} />
+          </CardContent>
+          <CardFooter>
+            <Button type="submit">Login</Button>
+          </CardFooter>
+        </form>
+      </Form>
+    </FormWrapper>
   );
 };
 
