@@ -1,29 +1,20 @@
 "use client";
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Form } from "@/components/ui/form";
-import { Label } from "@/components/ui/label";
-import { TabsContent } from "@/components/ui/tabs";
-import FormWrapper from "./FormWrapper";
-import React from "react";
-import { RegistrationFormValidation } from "@/app/types/types";
-import { registerTypeZod } from "../../../types/types";
 import { registrationSchema } from "@/app/schemas/validations";
+import { RegistrationFormValidation } from "@/app/types/types";
+import { Button } from "@/components/ui/button";
+import { CardContent, CardFooter } from "@/components/ui/card";
+import { Form } from "@/components/ui/form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import React from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { Config } from "../../../../../config";
+import { registerTypeZod } from "../../../types/types";
+import FormWrapper from "./FormWrapper";
 import RegistrationInputs from "./RegistrationInputs";
 
 const RegistrationForm: React.FC<RegistrationFormValidation> = () => {
-  const form = useForm<registerTypeZod>({
+  const form = useForm<typeof registerTypeZod>({
     resolver: zodResolver(registrationSchema),
     defaultValues: {
       email: "",
@@ -33,10 +24,12 @@ const RegistrationForm: React.FC<RegistrationFormValidation> = () => {
     },
   });
 
-  const onSubmit = (values: z.infer<typeof formSchema>) => {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values);
+  const onSubmit = async (values: z.infer<typeof registrationSchema>) => {
+    const response = await fetch(`${Config.baseURL}/registration`, {
+      method: "POST",
+      body: JSON.stringify(values),
+    });
+    return response;
   };
   return (
     <FormWrapper

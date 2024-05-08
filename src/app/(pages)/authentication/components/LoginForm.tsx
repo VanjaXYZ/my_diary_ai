@@ -1,38 +1,34 @@
 "use client";
-import { LoginFormValidation } from "@/app/types/types";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { TabsContent } from "@/components/ui/tabs";
-import { Button } from "@/components/ui/button";
-import { Form } from "@/components/ui/form";
-import LoginInputs from "./LoginInputs";
-import FormSubmitButton from "./FormSubmitButton";
-import { loginUser } from "@/app/routes/_auth/route";
-import FormWrapper from "./FormWrapper";
-import { useForm } from "react-hook-form";
-import { loginTypeZod } from "../../../types/types";
 import { loginSchema } from "@/app/schemas/validations";
+import { LoginFormValidation } from "@/app/types/types";
+import { Button } from "@/components/ui/button";
+import { CardContent, CardFooter } from "@/components/ui/card";
+import { Form } from "@/components/ui/form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { loginTypeZod } from "../../../types/types";
+import FormWrapper from "./FormWrapper";
+import LoginInputs from "./LoginInputs";
+import { Config } from "../../../../../config";
 
 const LoginForm: React.FC<LoginFormValidation> = () => {
-  const form = useForm<loginTypeZod>({
+  const form = useForm<typeof loginTypeZod>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
       username: "",
       password: "",
     },
   });
-  const onSubmit = (values: z.infer<typeof loginSchema>) => {
+  const onSubmit = async (values: z.infer<typeof loginSchema>) => {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
-    console.log(values);
+    // try {
+    // const response = await fetch(`${Config.baseURL}/user`)
+    // } catch (error) {
+    //   console.error();
+    // }
+    // console.log(values);
   };
   return (
     <FormWrapper
