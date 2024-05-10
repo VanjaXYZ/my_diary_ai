@@ -12,6 +12,7 @@ import { Config } from "../../../../../config";
 import { registerTypeZod } from "../../../types/types";
 import FormWrapper from "./FormWrapper";
 import RegistrationInputs from "./RegistrationInputs";
+import axios from "axios";
 
 const RegistrationForm: React.FC<RegistrationFormValidation> = () => {
   const form = useForm<typeof registerTypeZod>({
@@ -25,11 +26,19 @@ const RegistrationForm: React.FC<RegistrationFormValidation> = () => {
   });
 
   const onSubmit = async (values: z.infer<typeof registrationSchema>) => {
-    const response = await fetch(`${Config.baseURL}/registration`, {
-      method: "POST",
-      body: JSON.stringify(values),
-    });
-    return response;
+    try {
+      const response = await axios.post(`${Config.baseURL}/register`, {
+        email: values.email,
+        username: values.username,
+        password: values.password,
+      });
+      if (response.status === 201) {
+        console.log("Response: ", response);
+        return response;
+      }
+    } catch (error) {
+      console.error("Failed to register user.");
+    }
   };
   return (
     <FormWrapper
