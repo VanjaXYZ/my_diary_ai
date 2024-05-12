@@ -4,7 +4,9 @@ import { RegistrationFormValidation } from "@/app/types/types";
 import { Button } from "@/components/ui/button";
 import { CardContent, CardFooter } from "@/components/ui/card";
 import { Form } from "@/components/ui/form";
+import { toast } from "@/components/ui/use-toast";
 import { zodResolver } from "@hookform/resolvers/zod";
+import axios from "axios";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -12,7 +14,6 @@ import { Config } from "../../../../../config";
 import { registerTypeZod } from "../../../types/types";
 import FormWrapper from "./FormWrapper";
 import RegistrationInputs from "./RegistrationInputs";
-import axios from "axios";
 
 const RegistrationForm: React.FC<RegistrationFormValidation> = () => {
   const form = useForm<typeof registerTypeZod>({
@@ -33,11 +34,15 @@ const RegistrationForm: React.FC<RegistrationFormValidation> = () => {
         password: values.password,
       });
       if (response.status === 201) {
-        console.log("Response: ", response);
+        toast({
+          description: response?.data?.message,
+        });
         return response;
       }
-    } catch (error) {
-      console.error("Failed to register user.");
+    } catch (error: any) {
+      toast({
+        description: error.response.data.message,
+      });
     }
   };
   return (
