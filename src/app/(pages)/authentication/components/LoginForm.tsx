@@ -12,7 +12,7 @@ import FormWrapper from "./FormWrapper";
 import LoginInputs from "./LoginInputs";
 import { Config } from "../../../../../config";
 
-const LoginForm: React.FC<LoginFormValidation> = () => {
+const LoginForm: React.FC = () => {
   const form = useForm<typeof loginTypeZod>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
