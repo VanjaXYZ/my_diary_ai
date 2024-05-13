@@ -1,15 +1,15 @@
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import {
+  FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormLabel,
-  FormControl,
-  FormDescription,
   FormMessage,
 } from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { registerTypeZod } from "../../../types/types";
 
-const RegistrationInputs = ({ form }) => {
+const RegistrationInputs = ({ form }: { form: typeof registerTypeZod }) => {
   return (
     <>
       {/* EMAIL */}
