@@ -14,8 +14,10 @@ import { Config } from "../../../../../config";
 import { registerTypeZod } from "../../../types/types";
 import FormWrapper from "./FormWrapper";
 import RegistrationInputs from "./RegistrationInputs";
+import { useRouter } from "next/navigation";
 
-const RegistrationForm: React.FC<RegistrationFormValidation> = () => {
+const RegistrationForm: React.FC = () => {
+  const router = useRouter();
   const form = useForm<typeof registerTypeZod>({
     resolver: zodResolver(registrationSchema),
     defaultValues: {
@@ -37,6 +39,7 @@ const RegistrationForm: React.FC<RegistrationFormValidation> = () => {
         toast({
           description: response?.data?.message,
         });
+        router.replace("/authentication?login");
         return response;
       }
     } catch (error: any) {
