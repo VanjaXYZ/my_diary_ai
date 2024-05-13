@@ -39,7 +39,7 @@ const RegistrationForm: React.FC = () => {
         toast({
           description: response?.data?.message,
         });
-        router.replace("/authentication?login");
+        router.replace("/authentication");
         return response;
       }
     } catch (error: any) {
