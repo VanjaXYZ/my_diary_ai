@@ -2,6 +2,7 @@
 import React from "react";
 import CustomButton from "../(shared)/CustomButton";
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 const IntroText = () => {
   return (
@@ -14,14 +15,7 @@ const IntroText = () => {
         gain insights through AI-powered analysis
       </p>
       <Link href={"/authentication?login"}>
-        <CustomButton
-          buttonVariant="default"
-          type="button"
-          onClickFn={() => console.log("Hello")}
-          className={"mt-4"}
-        >
-          Get started
-        </CustomButton>
+        <Button className="mt-4">Get started</Button>
       </Link>
     </section>
   );
