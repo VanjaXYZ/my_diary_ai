@@ -8,8 +8,9 @@ import {
   FormDescription,
   FormMessage,
 } from "@/components/ui/form";
+import { loginTypeZod } from "@/app/types/types";
 
-const LoginInputs = ({ form }) => {
+const LoginInputs = ({ form }: { form: typeof loginTypeZod }) => {
   return (
     <>
       {/* USERNAME */}
