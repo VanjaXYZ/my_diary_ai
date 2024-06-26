@@ -16,7 +16,7 @@ import FormWrapper from "./FormWrapper";
 import LoginInputs from "./LoginInputs";
 
 const LoginForm: React.FC = () => {
-  const form = useForm<typeof loginTypeZod>({
+  const form = useForm<loginTypeZod>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
       username: "",
