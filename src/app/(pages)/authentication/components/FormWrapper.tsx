@@ -9,7 +9,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
-const FormWrapper = ({ value, title, description, children }) => {
+const FormWrapper = ({ value, title, description, children }: any) => {
   return (
     <TabsContent value={value}>
       <Card>
