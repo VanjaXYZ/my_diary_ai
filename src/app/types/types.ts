@@ -13,6 +13,6 @@ export type RegistrationFormValidation = {
   confirmPassword: string;
 };
 
-export const loginTypeZod = z.infer<typeof loginSchema>;
+export type loginTypeZod = z.infer<typeof loginSchema>;
 
-export const registerTypeZod = z.infer<typeof registrationSchema>;
+export type registerTypeZod = z.infer<typeof registrationSchema>;
