@@ -10,6 +10,7 @@ export function middleware(request: NextRequest) {
       "/authentication",
       "/authentication?login",
       "/authentication?register",
+      "/",
     ].includes(request.nextUrl.pathname)
   ) {
     return NextResponse.redirect(new URL("/authentication?login", request.url));
