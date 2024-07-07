@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/form";
 import { loginTypeZod } from "@/app/types/types";
 
-const LoginInputs = ({ form }: { form: typeof loginTypeZod }) => {
+const LoginInputs = ({ form }: { form: loginTypeZod | any }) => {
   return (
     <>
       {/* USERNAME */}
