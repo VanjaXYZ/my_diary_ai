@@ -18,7 +18,7 @@ import { useRouter } from "next/navigation";
 
 const RegistrationForm: React.FC = () => {
   const router = useRouter();
-  const form = useForm<typeof registerTypeZod>({
+  const form = useForm<registerTypeZod>({
     resolver: zodResolver(registrationSchema),
     defaultValues: {
       email: "",

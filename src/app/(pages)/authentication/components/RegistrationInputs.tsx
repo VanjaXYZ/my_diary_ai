@@ -9,7 +9,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { registerTypeZod } from "../../../types/types";
 
-const RegistrationInputs = ({ form }: { form: typeof registerTypeZod }) => {
+const RegistrationInputs = ({ form }: { form: registerTypeZod | any }) => {
   return (
     <>
       {/* EMAIL */}
